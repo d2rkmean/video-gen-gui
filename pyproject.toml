@@ -1,0 +1,50 @@
+[project]
+name = "video-gen-gui"
+version = "0.1.0"
+description = "Графический интерфейс (Flet 1.1) для управления зависимостями и CLI конвейера video-gen"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "flet[all]>=1.1.0",
+    "pillow>=11.0.0",
+    "pydantic>=2.10.0",
+]
+
+[project.scripts]
+video-gen-gui = "video_gen_gui.__main__:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/video_gen_gui"]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.15.0",
+    "pytest>=8.0.0",
+    "ruff>=0.9.0",
+]
+
+[tool.flet]
+org = "com.d2rkmean"
+product = "Video-Gen Studio"
+company = "VideoGen"
+copyright = "Copyright (C) 2026"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "B", "UP", "C4", "SIM", "RUF", "PTH"]
+ignore = ["E501", "RUF001", "RUF002", "RUF003"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["video_gen_gui"]
+
+[tool.mypy]
+python_version = "3.12"
+warn_unused_configs = true
+ignore_missing_imports = true
